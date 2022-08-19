@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 	"path"
-	"sven/cmd/sven/internal/base"
+	"github.com/go-sven/sven/cmd/sven/internal/base"
 
 	"github.com/AlecAivazis/survey/v2"
 	"github.com/fatih/color"
