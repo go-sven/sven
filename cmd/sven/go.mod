@@ -1,4 +1,4 @@
-module sven/cmd/sven
+module github.com/go-sven/sven/cmd/sven
 
 go 1.17
 
