@@ -12,7 +12,7 @@ var rootCmd = &cobra.Command{
 	Use:     "sven",
 	Short:   "sven : The easy tool for gin",
 	Long:    "sven : The easy tool for gin",
-	Version: release,
+	Version: "v1.1.1",
 }
 
 func init()  {
