@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 	"github.com/spf13/cobra"
-	"githua/go-sven/sven/cmd/sven/internal/project"
+	"github/go-sven/sven/cmd/sven/internal/project"
 )
 
 
