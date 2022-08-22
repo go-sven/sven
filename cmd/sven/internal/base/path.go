@@ -58,6 +58,10 @@ func copyFile(src, dst string, replaces []string) error {
 }
 
 func copyDir(src, dst string, replaces, ignores []string) error {
+
+	fmt.Println("src:",src)
+	fmt.Println("dst:",dst)
+
 	var err error
 	var fds []os.DirEntry
 	var srcinfo os.FileInfo
@@ -79,7 +83,9 @@ func copyDir(src, dst string, replaces, ignores []string) error {
 			continue
 		}
 		srcfp := path.Join(src, fd.Name())
+		fmt.Println("srcfp:",srcfp)
 		dstfp := path.Join(dst, fd.Name())
+		fmt.Println("dstfp:",dstfp)
 		var e error
 		if fd.IsDir() {
 			e = copyDir(srcfp, dstfp, replaces, ignores)

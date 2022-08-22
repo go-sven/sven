@@ -19,9 +19,10 @@ var repoAddIgnores = []string{
 func (p *Project) Add(ctx context.Context, dir string, layout string, branch string, mod string) error {
 	to := path.Join(dir, p.Path)
 
-	fmt.Println("dir:",dir)
-	fmt.Println("p.path:",p.Path)
-	fmt.Println("p.name:",p.Name)
+	fmt.Println("dir:",dir) //dir   E:\goproject\src\sven-demo //项目跟路径
+	fmt.Println("p.path:",p.Path) // app/server/order
+	fmt.Println("p.name:",p.Name) // order
+	//to  E:\goproject\src\sven-demo/app/server/order
 
 	if _, err := os.Stat(to); !os.IsNotExist(err) {
 		fmt.Printf("🚫 %s already exists\n", p.Name)
@@ -40,12 +41,12 @@ func (p *Project) Add(ctx context.Context, dir string, layout string, branch str
 		os.RemoveAll(to)
 	}
 
-	fmt.Printf("Add service %s, layout repo is %s, please wait a moment.\n\n", p.Name, layout)
+	fmt.Printf("Add server %s, layout repo is %s, please wait a moment.\n\n", p.Name, layout)
 
 	repo := base.NewRepo(layout, branch)
 
-	fmt.Println("mod:",mod)
-	fmt.Println("mod + path",path.Join(mod, p.Path))
+	fmt.Println("mod:",mod) //mod  sven-demo
+	fmt.Println("mod + path",path.Join(mod, p.Path)) //sven-demo/app/server/order
 
 	//CopyToV3 该方法是测试方法
 	if err := repo.CopyToV3(ctx, to, path.Join(mod, p.Path), repoAddIgnores, []string{path.Join(p.Path, "api"), "api"}); err != nil {
