@@ -58,50 +58,6 @@ func copyFile(src, dst string, replaces []string) error {
 }
 
 func copyDir(src, dst string, replaces, ignores []string) error {
-
-
-	var err error
-	var fds []os.DirEntry
-	var srcinfo os.FileInfo
-
-	//Stat返回描述文件f的FileInfo类型值。如果出错，错误底层类型是*PathError。
-	if srcinfo, err = os.Stat(src); err != nil {
-		return err
-	}
-
-	if err = os.MkdirAll(dst, srcinfo.Mode()); err != nil {
-		return err
-	}
-
-	if fds, err = os.ReadDir(src); err != nil {
-		return err
-	}
-	for _, fd := range fds {
-		if hasSets(fd.Name(), ignores) {
-			continue
-		}
-		srcfp := path.Join(src, fd.Name())
-
-		dstfp := path.Join(dst, fd.Name())
-
-		var e error
-		if fd.IsDir() {
-			e = copyDir(srcfp, dstfp, replaces, ignores)
-		} else {
-			e = copyFile(srcfp, dstfp, replaces)
-		}
-		if e != nil {
-			return e
-		}
-	}
-	return nil
-}
-
-func copyDir2(src, dst string, replaces, ignores []string) error {
-
-	repPath := src
-	src = src + "/app/server/demo"
-
 	fmt.Println("src:",src)
 	fmt.Println("dst:",dst)
 
@@ -125,10 +81,11 @@ func copyDir2(src, dst string, replaces, ignores []string) error {
 		if hasSets(fd.Name(), ignores) {
 			continue
 		}
-		srcfp := path.Join(repPath, fd.Name())
+		srcfp := path.Join(src, fd.Name())
 		fmt.Println("srcfp:",srcfp)
 		dstfp := path.Join(dst, fd.Name())
 		fmt.Println("dstfp:",dstfp)
+
 		var e error
 		if fd.IsDir() {
 			e = copyDir(srcfp, dstfp, replaces, ignores)
@@ -141,6 +98,7 @@ func copyDir2(src, dst string, replaces, ignores []string) error {
 	}
 	return nil
 }
+
 
 func hasSets(name string, sets []string) bool {
 	for _, ig := range sets {
