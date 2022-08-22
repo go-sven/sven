@@ -141,7 +141,11 @@ func (r *Repo) CopyToV3(ctx context.Context, to string, modPath string, ignores,
 
 	copyPath := r.Path() + "/app/server/demo"
 
-	toPath := "/app/server/" + to
+	//toPath := "/app/server/" + to
 
-	return copyDir(copyPath, toPath, replaces, ignores)
+	fmt.Println("r.path",r.Path())
+	fmt.Println("to",to)
+	fmt.Println("replaces",replaces)
+
+	return copyDir(copyPath, to, replaces, ignores)
 }
