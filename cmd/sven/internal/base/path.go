@@ -54,7 +54,6 @@ func copyFile(src, dst string, replaces []string) error {
 		}
 		buf = bytes.ReplaceAll(buf, []byte(old), []byte(next))
 	}
-	fmt.Println("mode:",srcinfo.Mode())
 	return os.WriteFile(dst, buf, srcinfo.Mode())
 }
 
@@ -83,6 +82,7 @@ func copyDir(src, dst string, replaces, ignores []string) error {
 			continue
 		}
 		srcfp := path.Join(src, fd.Name())
+		fmt.Println("fd.name",fd.Name())
 		fmt.Println("srcfp:",srcfp)
 		dstfp := path.Join(dst, fd.Name())
 		fmt.Println("dstfp:",dstfp)
