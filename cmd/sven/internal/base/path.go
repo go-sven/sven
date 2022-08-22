@@ -54,6 +54,7 @@ func copyFile(src, dst string, replaces []string) error {
 		}
 		buf = bytes.ReplaceAll(buf, []byte(old), []byte(next))
 	}
+	fmt.Println("mode:",srcinfo.Mode())
 	return os.WriteFile(dst, buf, srcinfo.Mode())
 }
 
