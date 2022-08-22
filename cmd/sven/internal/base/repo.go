@@ -148,5 +148,5 @@ func (r *Repo) CopyToV3(ctx context.Context, to string, modPath string, ignores,
 
 	fmt.Println("replaces",replaces)
 
-	return copyDir(r.Path(), to, replaces, ignores)
+	return copyDir2(r.Path(), to, replaces, ignores)
 }
