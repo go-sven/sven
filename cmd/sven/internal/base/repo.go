@@ -143,8 +143,9 @@ func (r *Repo) CopyToV3(ctx context.Context, to string, modPath string, ignores,
 
 	//toPath := "/app/server/" + to
 
-	fmt.Println("r.path",r.Path())
-	fmt.Println("to",to)
+	fmt.Println("r.path",r.Path()) //r.path C:\Users\86131/.sven/repo/gitee.com/gosven/sven-layout@main
+	fmt.Println("to",to) //to: E:\goproject\src\sven-demo\sven-demo/order
+
 	fmt.Println("replaces",replaces)
 
 	return copyDir(copyPath, to, replaces, ignores)

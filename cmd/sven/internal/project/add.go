@@ -19,6 +19,10 @@ var repoAddIgnores = []string{
 func (p *Project) Add(ctx context.Context, dir string, layout string, branch string, mod string) error {
 	to := path.Join(dir, p.Path)
 
+	fmt.Println("dir:",dir)
+	fmt.Println("p.path:",p.Path)
+	fmt.Println("p.name:",p.Name)
+
 	if _, err := os.Stat(to); !os.IsNotExist(err) {
 		fmt.Printf("🚫 %s already exists\n", p.Name)
 		override := false
@@ -39,6 +43,9 @@ func (p *Project) Add(ctx context.Context, dir string, layout string, branch str
 	fmt.Printf("Add service %s, layout repo is %s, please wait a moment.\n\n", p.Name, layout)
 
 	repo := base.NewRepo(layout, branch)
+
+	fmt.Println("mod:",mod)
+	fmt.Println("mod + path",path.Join(mod, p.Path))
 
 	//CopyToV3 该方法是测试方法
 	if err := repo.CopyToV3(ctx, to, path.Join(mod, p.Path), repoAddIgnores, []string{path.Join(p.Path, "api"), "api"}); err != nil {
