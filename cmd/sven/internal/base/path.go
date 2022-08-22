@@ -62,6 +62,7 @@ func copyDir(src, dst string, replaces, ignores []string) error {
 	var fds []os.DirEntry
 	var srcinfo os.FileInfo
 
+	//Stat返回描述文件f的FileInfo类型值。如果出错，错误底层类型是*PathError。
 	if srcinfo, err = os.Stat(src); err != nil {
 		return err
 	}
