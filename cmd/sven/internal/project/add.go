@@ -36,25 +36,18 @@ func (p *Project) Add(ctx context.Context, dir string, layout string, branch str
 		os.RemoveAll(to)
 	}
 
-	fmt.Printf("🚀 Add service %s, layout repo is %s, please wait a moment.\n\n", p.Name, layout)
+	fmt.Printf("Add service %s, layout repo is %s, please wait a moment.\n\n", p.Name, layout)
 
 	repo := base.NewRepo(layout, branch)
 
-	if err := repo.CopyToV2(ctx, to, path.Join(mod, p.Path), repoAddIgnores, []string{path.Join(p.Path, "api"), "api"}); err != nil {
+	//CopyToV3 该方法是测试方法
+	if err := repo.CopyToV3(ctx, to, path.Join(mod, p.Path), repoAddIgnores, []string{path.Join(p.Path, "api"), "api"}); err != nil {
 		return err
 	}
 
-	/*e := os.Rename(
-		path.Join(to, "cmd", "server"),
-		path.Join(to, "cmd", p.Name),
-	)
-	if e != nil {
-		return e
-	} //*/
-
 	base.Tree(to, dir)
 
-	fmt.Printf("\n🍺 Repository creation succeeded %s\n", color.GreenString(p.Name))
+	fmt.Printf("Repository creation succeeded %s\n", color.GreenString(p.Name))
 	//fmt.Print("💻 Use the following command to add a project 👇:\n\n")
 
 	fmt.Println(color.WhiteString("$ cd %s", p.Name))
