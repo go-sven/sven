@@ -59,6 +59,9 @@ func copyFile(src, dst string, replaces []string) error {
 
 func copyDir(src, dst string, replaces, ignores []string) error {
 
+	repPath := src
+	src = src + "/app/server/demo"
+
 	fmt.Println("src:",src)
 	fmt.Println("dst:",dst)
 
@@ -82,7 +85,7 @@ func copyDir(src, dst string, replaces, ignores []string) error {
 		if hasSets(fd.Name(), ignores) {
 			continue
 		}
-		srcfp := path.Join(src, fd.Name())
+		srcfp := path.Join(repPath, fd.Name())
 		fmt.Println("srcfp:",srcfp)
 		dstfp := path.Join(dst, fd.Name())
 		fmt.Println("dstfp:",dstfp)
