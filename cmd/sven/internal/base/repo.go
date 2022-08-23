@@ -137,7 +137,7 @@ func (r *Repo) CopyToV3(ctx context.Context, to string, modPath string, ignores,
 
 	mod = mod + "/app/server/demo"
 
-	fmt.Println("mod111:",mod)
+	//fmt.Println("mod111:",mod)
 	if err != nil {
 		return err
 	}
@@ -147,10 +147,10 @@ func (r *Repo) CopyToV3(ctx context.Context, to string, modPath string, ignores,
 
 	//toPath := "/app/server/" + to
 
-	fmt.Println("r.path",r.Path()) //r.path C:\Users\86131/.sven/repo/gitee.com/gosven/sven-layout@main
-	fmt.Println("to",to) //to: E:\goproject\src\sven-demo\sven-demo/order
+	//fmt.Println("r.path",r.Path()) //r.path C:\Users\86131/.sven/repo/gitee.com/gosven/sven-layout@main
+	//fmt.Println("to",to) //to: E:\goproject\src\sven-demo\sven-demo/order
 
-	fmt.Println("replaces",replaces)
+	//fmt.Println("replaces",replaces)
 
 	copyPath := r.Path() + "/app/server/demo"
 	return copyDir(copyPath, to, replaces, ignores)

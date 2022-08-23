@@ -53,15 +53,11 @@ func copyFile(src, dst string, replaces []string) error {
 			continue
 		}
 
-		fmt.Println("old",old)
-		fmt.Println("next",next)
-
-
+		//fmt.Println("old",old)
+		//fmt.Println("next",next)
 		buf = bytes.ReplaceAll(buf, []byte(old), []byte(next))
-		fmt.Printf("%s\n", buf)
+		//fmt.Printf("%s\n", buf)
 	}
-	//fmt.Println("test11111111")
-	//fmt.Printf("%s\n", buf)
 	return os.WriteFile(dst, buf, srcinfo.Mode())
 }
 
