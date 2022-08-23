@@ -49,7 +49,7 @@ func (p *Project) Add(ctx context.Context, dir string, layout string, branch str
 	fmt.Println("mod + path",path.Join(mod, p.Path)) //sven-demo/app/server/order
 
 	//CopyToV3 该方法是测试方法
-	if err := repo.CopyToV3(ctx, to, path.Join(mod, p.Path), repoAddIgnores, []string{path.Join(p.Path, "api"), "api"}); err != nil {
+	if err := repo.CopyToV3(ctx, to, path.Join(mod, p.Path), repoAddIgnores, []string{}); err != nil {
 		return err
 	}
 
@@ -57,8 +57,8 @@ func (p *Project) Add(ctx context.Context, dir string, layout string, branch str
 
 	fmt.Printf("Repository creation succeeded %s\n", color.GreenString(p.Name))
 	//fmt.Print("💻 Use the following command to add a project 👇:\n\n")
+	//fmt.Println(color.WhiteString("$ cd %s", p.Name))
 
-	fmt.Println(color.WhiteString("$ cd %s", p.Name))
 	fmt.Println("Thanks for using sven")
 	return nil
 }

@@ -134,6 +134,10 @@ func (r *Repo) CopyToV3(ctx context.Context, to string, modPath string, ignores,
 		return err
 	}
 	mod, err := ModulePath(path.Join(r.Path(), "go.mod"))
+
+	mod = mod + "/app/server/demo"
+
+	fmt.Println("mod111:",mod)
 	if err != nil {
 		return err
 	}

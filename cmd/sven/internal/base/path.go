@@ -52,14 +52,22 @@ func copyFile(src, dst string, replaces []string) error {
 			old = next
 			continue
 		}
+
+		fmt.Println("old",old)
+		fmt.Println("next",next)
+
+
 		buf = bytes.ReplaceAll(buf, []byte(old), []byte(next))
+		fmt.Printf("%s\n", buf)
 	}
+	//fmt.Println("test11111111")
+	//fmt.Printf("%s\n", buf)
 	return os.WriteFile(dst, buf, srcinfo.Mode())
 }
 
 func copyDir(src, dst string, replaces, ignores []string) error {
-	fmt.Println("src:",src)
-	fmt.Println("dst:",dst)
+	//fmt.Println("src:",src)
+	//fmt.Println("dst:",dst)
 
 	var err error
 	var fds []os.DirEntry
@@ -82,10 +90,10 @@ func copyDir(src, dst string, replaces, ignores []string) error {
 			continue
 		}
 		srcfp := path.Join(src, fd.Name())
-		fmt.Println("fd.name",fd.Name())
-		fmt.Println("srcfp:",srcfp)
+		//fmt.Println("fd.name",fd.Name())
+		//fmt.Println("srcfp:",srcfp)
 		dstfp := path.Join(dst, fd.Name())
-		fmt.Println("dstfp:",dstfp)
+		//fmt.Println("dstfp:",dstfp)
 
 		var e error
 		if fd.IsDir() {
