@@ -31,11 +31,13 @@ var (
 )
 
 func init() {
-	if repoURL = os.Getenv("KRATOS_LAYOUT_REPO"); repoURL == "" {
-		//默认执行gitee
-		//repoURL = "https://github.com/go-sven/sven-layout.git"
-		repoURL = "https://gitee.com/gosven/sven-layout.git"
-	}
+	//if repoURL = os.Getenv("KRATOS_LAYOUT_REPO"); repoURL == "" {
+	//	//默认执行gitee
+	//	//repoURL = "https://github.com/go-sven/sven-layout.git"
+	//	repoURL = "https://gitee.com/gosven/sven-layout.git"
+	//}
+	//默认执行gitee
+	repoURL = "https://gitee.com/gosven/sven-layout.git"
 	timeout = "60s"
 	CmdNew.Flags().StringVarP(&repoURL, "repo-url", "r", repoURL, "layout repo")
 	CmdNew.Flags().StringVarP(&branch, "branch", "b", branch, "repo branch")
@@ -67,10 +69,13 @@ func run(cmd *cobra.Command, args []string) {
 	} else {
 		name = args[0]
 	}
+	//fmt.Println("nomod:",nomod)
+	//fmt.Println("branch:",branch)
 	p := &Project{Name: path.Base(name), Path: name}
 	done := make(chan error, 1)
 	go func() {
 		if !nomod {
+			fmt.Println("111")
 			done <- p.New(ctx, wd, repoURL, branch)
 			return
 		}
