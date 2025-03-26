@@ -1,4 +1,4 @@
-module github.com/go-sven.sven/contrib/conf
+module github.com/go-sven/sven/contrib/conf
 
 go 1.22.3
 
