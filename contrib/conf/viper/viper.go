@@ -7,11 +7,11 @@ import (
 	"os"
 )
 
-type ViperConfig struct {
+type SvenViper struct {
 	parser *viper.Viper
 }
 
-func NewViperConfig(filePath string) (conf config.Config, err error) {
+func NewSvenViper(filePath string) (conf config.Config, err error) {
 	stat, err := os.Stat(filePath)
 	if err != nil {
 		return
@@ -25,9 +25,9 @@ func NewViperConfig(filePath string) (conf config.Config, err error) {
 	if err != nil {
 		return nil, err
 	}
-	return &ViperConfig{parser: parser}, nil
+	return &SvenViper{parser: parser}, nil
 }
 
-func (c *ViperConfig) Parse(obj any) error {
+func (c *SvenViper) Parse(obj any) error {
 	return c.parser.Unmarshal(obj)
 }

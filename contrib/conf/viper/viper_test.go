@@ -1,7 +1,6 @@
 package viper
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -27,17 +26,20 @@ type Cache struct {
 }
 
 func TestViperParse(t *testing.T) {
-	filePath := "../test/config.yaml"
-	vc, err := NewViperConfig(filePath)
-	if err != nil {
-		fmt.Println("viper err:", err)
-	}
-	conf := new(AppConfig)
-	err = vc.Parse(conf)
-	if err != nil {
-		fmt.Println("parse err:", err)
-	}
-	fmt.Println(conf.Server.Addr)
-	fmt.Println(conf.Database.Driver)
-	fmt.Println(conf.Cache.Password)
+	t.Run("use viper parse config file", func(t *testing.T) {
+		filePath := "../testdata/config.yaml"
+		svenViper, err := NewSvenViper(filePath)
+		if err != nil {
+			t.Error("viper err:", err)
+		}
+		conf := new(AppConfig)
+		err = svenViper.Parse(conf)
+		if err != nil {
+			t.Error("parse err:", err)
+		}
+		t.Log(conf.Server.Addr)
+		t.Log(conf.Database.Driver)
+		t.Log(conf.Cache.Password)
+	})
+
 }

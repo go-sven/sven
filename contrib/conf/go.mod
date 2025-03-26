@@ -1,8 +1,11 @@
-module github.com/go-sven/sven/config
+module sven/contrib/conf
 
 go 1.22.3
 
-require github.com/spf13/viper v1.20.0
+require (
+	github.com/go-sven/sven/config v0.0.0-20250325111724-949ed73756e4
+	github.com/spf13/viper v1.20.0
+)
 
 require (
 	github.com/fsnotify/fsnotify v1.8.0 // indirect
