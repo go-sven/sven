@@ -11,13 +11,6 @@ type stdLogger struct {
 	log *log.Logger
 }
 
-// NewStdLogger new a logger with writer.
-func NewStdLogger(w io.Writer) Logger {
-	return &stdLogger{
-		log: log.New(w, "", 0),
-	}
-}
-
 func (s *stdLogger) Debug(v ...any) {
 	s.log.Println(v...)
 }
@@ -48,4 +41,11 @@ func (s *stdLogger) Error(v ...any) {
 
 func (s *stdLogger) Errorf(format string, v ...any) {
 	s.log.Printf(format, v...)
+}
+
+// NewStdLogger new a logger with writer.
+func NewStdLogger(w io.Writer) Logger {
+	return &stdLogger{
+		log: log.New(w, "", 0),
+	}
 }

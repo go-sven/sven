@@ -2,18 +2,20 @@ package log
 
 import "strings"
 
-type Level uint8
+// Level is a logger level.
+type Level int8
 
+// LevelKey is logger level key.
 const LevelKey = "level"
 
 const (
-	//LevelDebug debug level.
+	// LevelDebug is logger debug level.
 	LevelDebug Level = iota
-	// LevelInfo  info level.
+	// LevelInfo is logger info level.
 	LevelInfo
-	// LevelWarn  warn level.
+	// LevelWarn is logger warn level.
 	LevelWarn
-	// LevelError  error level.
+	// LevelError is logger error level.
 	LevelError
 )
 
@@ -32,6 +34,7 @@ func (l Level) String() string {
 	}
 }
 
+// ParseLevel parses a level string into a logger Level value.
 func ParseLevel(s string) Level {
 	switch strings.ToUpper(s) {
 	case "DEBUG":
