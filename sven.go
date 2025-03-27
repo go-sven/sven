@@ -8,6 +8,7 @@ import (
 	"os/signal"
 )
 
+//想封装个web的骨架
 //不知道干啥 上来先定义一个应用
 
 type Application struct {
