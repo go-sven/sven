@@ -18,16 +18,6 @@ type GinServer struct {
 	httpServer *http.Server
 }
 
-func (s *GinServer) Start() error {
-	return s.httpServer.ListenAndServe()
-}
-
-func (s *GinServer) Stop() error {
-	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-	defer cancel()
-	return s.httpServer.Shutdown(ctx)
-}
-
 // 使用gin.Engine
 
 func NewGinServer(engine *gin.Engine, addr string) *GinServer {
@@ -36,4 +26,14 @@ func NewGinServer(engine *gin.Engine, addr string) *GinServer {
 			Addr:    addr,
 			Handler: engine,
 		}}
+}
+
+func (s *GinServer) Start() error {
+	return s.httpServer.ListenAndServe()
+}
+
+func (s *GinServer) Stop() error {
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+	return s.httpServer.Shutdown(ctx)
 }
