@@ -9,13 +9,16 @@ import (
 )
 
 //想封装个web的骨架
+// app := NewApp()
+// app.Run() => app.ginServer.Start()
+// app.Stop()
 //不知道干啥 上来先定义一个应用
 
 type Application struct {
 	id      string
 	name    string
 	version string
-	//应用有了三要素了，应该要有个服务能开始 能结束
+	//应用有了三要素了，应该要有个服务 能开始 能结束
 	//server Server
 	server server.Server
 	//接受信号，优雅的停止服务
