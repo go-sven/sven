@@ -2,17 +2,17 @@ package server
 
 import (
 	"github.com/gin-gonic/gin"
-	"net/http"
+	"github.com/go-sven/sven/contrib/engine"
 	"testing"
 	"time"
 )
 
 func TestNewGinServer(t *testing.T) {
-	engine := gin.Default()
-	engine.Handle("GET", "/ping", func(c *gin.Context) {
-		c.String(http.StatusOK, "pong")
+	e := engine.NewEngine("debug", true)
+	e.GET("/ping", func(ctx *gin.Context) {
+		ctx.String(200, "pong")
 	})
-	srv := NewGinServer(engine, ":8090")
+	srv := NewGinServer(e, ":8090")
 	go func() {
 		time.Sleep(10 * time.Second)
 		_ = srv.Stop()
