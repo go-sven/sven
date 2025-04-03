@@ -5,7 +5,6 @@ import (
 	"errors"
 	"fmt"
 	"github.com/AlecAivazis/survey/v2"
-	"github.com/go-sven/sven/internal/base"
 	"github.com/spf13/cobra"
 	"os"
 	"path"
@@ -66,17 +65,8 @@ func run(cmd *cobra.Command, args []string) {
 	p := &Project{Name: filepath.Base(name), Path: name}
 	done := make(chan error, 1)
 	go func() {
-		projectRoot := getgomodProjectRoot(wd)
-		if gomodIsNotExistIn(projectRoot) {
-			done <- fmt.Errorf("🚫 go.mod don't exists in %s", projectRoot)
-			return
-		}
-
-		mod, e := base.ModulePath(path.Join(projectRoot, "go.mod"))
-		if e != nil {
-			panic(e)
-		}
-		done <- p.Add(ctx, wd, repoURL, branch, mod)
+		done <- p.New(ctx, wd, repoURL, branch)
+		return
 	}()
 
 	select {

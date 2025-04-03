@@ -110,12 +110,3 @@ func (r *Repo) Pull(ctx context.Context) error {
 	return err
 
 }
-
-func (r *Repo) CopyToV2(ctx context.Context, to string, modPath string, ignores, replaces []string) error {
-	if err := r.Clone(ctx); err != nil {
-		return err
-	}
-	mod := "github.com/go-sven/layout"
-	replaces = append([]string{mod, modPath}, replaces...)
-	return copyDir(r.Path(), to, replaces, ignores)
-}

@@ -20,12 +20,6 @@ func TestRepo(t *testing.T) {
 	filename := path.Join(repo.Path(), "go.mod") ///Users/a1/.sven/repo/sven-layout@main/go.mod
 	t.Log("filename:", filename)                 //github/go-sven/sven-layout
 
-	mod, err := ModulePath(filename)
-	if err != nil {
-		t.Error(err)
-	}
-	t.Log("mod:", mod)
-
 	fmt.Println("done")
 
 }
