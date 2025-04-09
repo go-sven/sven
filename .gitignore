@@ -1,0 +1,13 @@
+*.exe
+*.orig
+*.rej
+*.so
+*~
+*.db
+.DS_Store
+._*
+/.idea
+/.fleet
+/.vscode/*.log
+vendor/
+/docs
